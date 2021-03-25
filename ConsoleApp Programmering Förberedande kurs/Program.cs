@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ConsoleApp_Programmering_Förberedande_kurs
 {
-    class ERConApp
+    class ERConMain
     {
         private static bool ValdFarg = true;
 
@@ -36,7 +36,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
                 Console.ForegroundColor = ConsoleColor.Green;
             }
 
-            Console.WriteLine("Skriv in menyval och tryck Enter:");
+            Console.WriteLine("Menyval för funktioner:");
             Console.WriteLine();
             Console.WriteLine("1) Skriv ut Hello World");
             Console.WriteLine("2) Mata in Namn, Efternamn, Ålder, och skriv ut");
@@ -51,12 +51,12 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             Console.WriteLine("11) Skapa 2 arrayer, första med slumpmässiga tal, den andra med dessa tal o stigande ordning");
             Console.WriteLine("12) Skriv in något, och kollar om det är en palindrom (vändbart ord, så som abba)");
             Console.WriteLine("13) Skriv in 2 tal mellan 1 och 30, och skriver ut alla tal emellan");
-            Console.WriteLine("14) Skriv in ett antal komma-separerade siffror, som sorteras & skrivs ut som udda och jämna värden");
-            Console.WriteLine("15) Skriv in ett antal komma-separerade siffror, som adderas, summeras & skrivs ut");
-            Console.WriteLine("16) Ange namn på din karaktär, sedan namn på motståndare. Generera slumptals-värden för Hälsa, Styrka & Tur. Och spara i en instans (objekt) av en klass");
+            //Console.WriteLine("14) Skriv in ett antal komma-separerade siffror, som sorteras & skrivs ut som udda och jämna värden");
+            //Console.WriteLine("15) Skriv in ett antal komma-separerade siffror, som adderas, summeras & skrivs ut");
+            Console.WriteLine("16) Ange namn på din karaktär & motståndare. Genererar slumptals-värden för Hälsa, Styrka & Tur.");
             Console.WriteLine("0) Avsluta programmet");
 
-            Console.Write("\r\nSkriv in menyval: ");
+            Console.Write("\r\nSkriv in NR på menyval & tryck enter: ");
 
             switch (Console.ReadLine())
             {
@@ -99,12 +99,12 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
                 case "13":
                     NumSpann();
                     return true;
-                case "14":
+            /*    case "14":
                     KommaUddaJamn();
                     return true;
                 case "15":
                     KommaPlussa();
-                    return true;
+                    return true; */
                 case "16":
                     RollspelStats();
                     return true;
@@ -139,8 +139,22 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             string eNamn = Console.ReadLine();
 
             Console.WriteLine("Ålder:");
-            string yAge = Console.ReadLine();
-
+            bool inteOk = false;
+            int yAge = 0;
+            while (inteOk == false)
+            {
+                try
+                {
+                    yAge = Convert.ToInt32(Console.ReadLine());
+                    //string yAge = Console.ReadLine();
+                    inteOk = true;
+                }
+                catch
+                {
+                    Console.WriteLine("Detta är inte ett heltal(ej decimaltal), var god ange ålder i heltal:");
+                    inteOk = false;
+                }
+            }
             Console.Clear();
 
             // skriver ut i konsoll vad vad användaren skrev
@@ -559,10 +573,11 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
         private static void TvaArray()
         {
             Console.Clear();
-            Console.Write("Genererar 10st unika slupmässiga tal mellan 1 och 52, sparar i en array. Sorterar stigande och sparar i en annan array.\n");
-
-            int[] antNr = new int[10];
+            int antalTal = 10;
+            int[] antNr = new int[antalTal];
             Random slump = new Random();
+
+            Console.Write("Genererar " + antalTal + " unika slupmässiga tal mellan 1 och 52, sparar i en array. Sorterar stigande och sparar i en annan array.\n");
 
             int kort;
             for (kort = 0; kort < antNr.Length; kort++)
@@ -589,23 +604,23 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             }
 
             Console.Write("\nDom unika slumptalen sparade i första arrayen blev: ");
-            for (kort = 0; kort < 10; kort++)
+            for (kort = 0; kort < antNr.Length; kort++)
             {
                 Console.Write("{0}  ", antNr[kort]);
             }
             Console.Write("\n");
 
-            int[] ArraySorted = new int[10];
+            int[] arraySorted = new int[10];
 
-            antNr.CopyTo(ArraySorted, 0); //kopierar första arrayen in till en ny array
+            antNr.CopyTo(arraySorted, 0); //kopierar första arrayen in till en ny array
 
-            Array.Sort(ArraySorted); // sorterar denna array i stigande
+            Array.Sort(arraySorted); // sorterar denna array i stigande
 
 
             Console.Write("\nDom unika slumptalen kopierat från första array till andra array, och sorterat i stigande ordning: ");
-            for (kort = 0; kort < 10; kort++)
+            for (kort = 0; kort < arraySorted.Length; kort++)
             {
-                Console.Write("{0}  ", ArraySorted[kort]);
+                Console.Write("{0}  ", arraySorted[kort]);
             }
             Console.Write("\n");
 
@@ -666,44 +681,36 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
         private static void NumSpann()
         {
             Console.Clear();
-            string intervall = "från 1 till 99";
-            Console.WriteLine("Skriv in 2st positiva heltal(ej decimaltal) " + intervall + ", så listar jag alla nummer EMELLAN, i stigande ordning:\n");
+            int lagaTalet = 7;
+            int hogaTalet = 43;
 
-            //int deciTal = 0;
-            //int deciConv = 0;
-            //bool inputNoE;// är input tomt?
-            //bool inputTest = false; //input test false till den klarat kraven
-            int anvInput;
-            int anvInput2;
+            Console.WriteLine("Skriv in 2st olika positiva heltal(ej decimaltal) från " + lagaTalet + " till " + hogaTalet + ", så listar jag alla nummer EMELLAN, i stigande ordning:");
+
             int phelTal1 = 0;
+            int phelTal2 = 0;
             bool kollConvLoop = false;
             bool kollConvLoop2 = false;
-            int phelTal2 = 0;
-            //string anvInput = Console.ReadLine();
-            //Console.WriteLine("Tal 1:");
-            //bool kollConvLoop = false; // kolla input om det går att konvertera till Int32 variabel
-            //Console.WriteLine("Tal 1:");
 
             while (kollConvLoop == false)
             {
                 try
                 {
                     Console.WriteLine("\nTal 1:");
-                    anvInput = Convert.ToInt32(Console.ReadLine());
+                    int anvInput = Convert.ToInt32(Console.ReadLine());
 
                     if (anvInput < 0)
                     {
-                        Console.Write("\nDu har skrivit ett negativt tal. Skriv ett positivt heltal " + intervall + ":\n");
+                        Console.Write("\nDu har skrivit ett negativt tal. Skriv ett positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
                         kollConvLoop = false;
                     }
-                    else if (anvInput < 1)
+                    else if (anvInput < lagaTalet)
                     {
-                        Console.Write("\nDu har skrivit 0. Skriv ett positivt heltal " + intervall + ":\n");
+                        Console.Write("\nDu har skrivit ett för långt tal. Skriv ett positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
                         kollConvLoop = false;
                     }
-                    else if (anvInput > 99)
+                    else if (anvInput > hogaTalet)
                     {
-                        Console.Write("\nDu har skrivit ett för högt tal. Skriv ett positivt heltal " + intervall + ":\n");
+                        Console.Write("\nDu har skrivit ett för högt tal. Skriv ett positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
                         kollConvLoop = false;
                     }
                     else
@@ -714,36 +721,41 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
                 }
                 catch
                 {
-                    Console.Write("\nDu har skrivit fel! Skriv ett positivt heltal " + intervall + ":\n");
+                    Console.Write("\nDu har skrivit fel! Skriv ett positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
                     kollConvLoop = false;
                 }
 
             }
-            Console.Clear();
-            //Console.Write("\nTal 1 är: " + phelTal1);
-            //Console.Write("\n\n");
 
+            Console.Clear();
 
             while (kollConvLoop2 == false)
             {
                 try
                 {
                     Console.WriteLine("\nTal 2:");
-                    anvInput2 = Convert.ToInt32(Console.ReadLine());
+
+                    int anvInput2 = Convert.ToInt32(Console.ReadLine());
+                    
 
                     if (anvInput2 < 0)
                     {
-                        Console.Write("\nDu har skrivit ett negativt tal. Skriv ett positivt heltal " + intervall + ":\n");
+                        Console.Write("\nDu har skrivit ett negativt tal. Skriv ett positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
                         kollConvLoop2 = false;
                     }
-                    else if (anvInput2 < 1)
+                    else if (anvInput2 < lagaTalet)
                     {
-                        Console.Write("\nDu har skrivit 0. Skriv ett positivt heltal " + intervall + ":\n");
+                        Console.Write("\nDu har skrivit ett för långt tal. Skriv ett positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
                         kollConvLoop2 = false;
                     }
-                    else if (anvInput2 > 99)
+                    else if (anvInput2 == phelTal1)
                     {
-                        Console.Write("\nDu har skrivit ett för högt tal. Skriv ett positivt heltal " + intervall + ":\n");
+                        Console.Write("\nDu har skrivit samma tal som du skrev på Tal1. Skriv ett unikt positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
+                        kollConvLoop2 = false;
+                    }
+                    else if (anvInput2 > hogaTalet)
+                    {
+                        Console.Write("\nDu har skrivit ett för högt tal. Skriv ett positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
                         kollConvLoop2 = false;
                     }
                     else
@@ -754,18 +766,51 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
                 }
                 catch
                 {
-                    Console.Write("\nDu har skrivit fel! Skriv ett positivt heltal " + intervall + ":\n");
+                    Console.Write("\nDu har skrivit fel! Skriv ett positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
                     kollConvLoop2 = false;
                 }
 
             }
+            /* debug testning
             Console.Clear();
             Console.Write("\nTal 1 är: " + phelTal1);
             Console.Write("\n");
             Console.Write("\nTal 2 är: " + phelTal2);
-            Console.Write("\n\n");
+            Console.Write("\n\n"); */
 
+            int lagstaNr;
 
+            if (phelTal1 < phelTal2)
+                {
+                lagstaNr = phelTal1;
+                }
+            else
+                {
+                lagstaNr = phelTal2;
+                }
+
+            int antmellanNren = (phelTal1 - phelTal2);
+
+            if (antmellanNren < 0)
+            {
+                antmellanNren = -antmellanNren;
+            }
+
+            antmellanNren = antmellanNren - 1;
+
+            Console.Clear();
+
+            Console.Write("\nAntal nummer emellan " + phelTal1 + " & " + phelTal2 + " är " + antmellanNren + ".");
+
+            var mellanNrarray = Enumerable.Range(lagstaNr+1, antmellanNren).ToArray();
+
+            Console.Write("\n\n\nAlla talen emellan, här i stigande ordning: ");
+            int nummren;
+            for (nummren = 0; nummren < mellanNrarray.Length; nummren++)
+            {
+                Console.Write("{0}  ", mellanNrarray[nummren]);
+            }
+            Console.Write("\n");
 
 
             // 2 blanka rader och sedan vänta på enter-tryck för att visa menyn 
@@ -779,20 +824,9 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
         private static void KommaUddaJamn()
         {
 
-
-            if (ValdFarg == true)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                ValdFarg = false;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-                ValdFarg = true;
-            }
+            //placeholder
             Console.Clear();
-
-            Console.WriteLine("Har nu ändrat textfärg.");
+            Console.Write("\nFunktion ej skapad. Detta är en placeholder...");
 
             // 2 blanka rader och sedan vänta på enter-tryck för att visa menyn 
             Console.WriteLine();
@@ -830,21 +864,13 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
         }
         private static void RollspelStats()
         {
-
-
-            if (ValdFarg == true)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                ValdFarg = false;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-                ValdFarg = true;
-            }
             Console.Clear();
 
-            Console.WriteLine("Har nu ändrat textfärg.");
+            Rollspel pTutor = new Rollspel();
+
+            pTutor.SetRollspel("closso", 24, 12, 6);
+
+            Console.WriteLine(pTutor.GetRollspel());
 
             // 2 blanka rader och sedan vänta på enter-tryck för att visa menyn 
             Console.WriteLine();
@@ -853,7 +879,26 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             while (Console.ReadKey().Key != ConsoleKey.Enter)
             {
             }
-        }
 
+        }
+    }
+
+    class Rollspel //testar lite object store and fetch, och lägger ny klass i samma cs. för det är så litet program
+    {
+        string RollspelNamn;
+        int RollspelHp;
+        int RollspelSty;
+        int RollspelTur;
+        public void SetRollspel(string karNamn, int hp, int sty, int tur)
+        {
+            RollspelNamn = karNamn;
+            RollspelHp = hp;
+            RollspelSty = sty;
+            RollspelTur = tur;
+        }
+        public string GetRollspel()
+        {
+            return RollspelNamn;
+        }
     }
 }
