@@ -51,7 +51,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             Console.WriteLine("11) Skapa 2 arrayer, första med slumpmässiga tal, den andra med dessa tal o stigande ordning");
             Console.WriteLine("12) Skriv in något, och kollar om det är en palindrom (vändbart ord, så som abba)");
             Console.WriteLine("13) Skriv in 2 tal mellan 1 och 30, och skriver ut alla tal emellan");
-            //Console.WriteLine("14) Skriv in ett antal komma-separerade siffror, som sorteras & skrivs ut som udda och jämna värden");
+            Console.WriteLine("14) Skriv in ett antal komma-separerade siffror, som sorteras & skrivs ut som udda och jämna värden");
             //Console.WriteLine("15) Skriv in ett antal komma-separerade siffror, som adderas, summeras & skrivs ut");
             Console.WriteLine("16) Ange namn på din karaktär & motståndare. Genererar slumptals-värden för Hälsa, Styrka & Tur.");
             Console.WriteLine("0) Avsluta programmet");
@@ -99,10 +99,10 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
                 case "13":
                     NumSpann();
                     return true;
-            /*    case "14":
+                case "14":
                     KommaUddaJamn();
                     return true;
-                case "15":
+            /*    case "15":
                     KommaPlussa();
                     return true; */
                 case "16":
@@ -826,7 +826,15 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
 
             //placeholder
             Console.Clear();
-            Console.Write("\nFunktion ej skapad. Detta är en placeholder...");
+            Console.Write("\nSkriv in några komma-separerade tal. Ex. 3,57,14,29 utan mellanslag:\n");
+
+            string inputkomSep = "1,3,2,5,4";
+            //string komSep = Console.ReadLine();
+            string ordered = String.Join(",", inputkomSep.Split(',').Select(c => Convert.ToInt32(c)).OrderBy(i => i));
+            int ordered = String.Join(",", inputkomSep.Split(',').Select(c => Convert.ToInt32(c)).OrderBy(i => i));
+
+            Console.WriteLine("\n" + ordered);
+
 
             // 2 blanka rader och sedan vänta på enter-tryck för att visa menyn 
             Console.WriteLine();
@@ -838,21 +846,9 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
         }
         private static void KommaPlussa()
         {
-
-
-            if (ValdFarg == true)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                ValdFarg = false;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-                ValdFarg = true;
-            }
+            //placeholder
             Console.Clear();
-
-            Console.WriteLine("Har nu ändrat textfärg.");
+            Console.Write("\nFunktion ej skapad. Detta är en placeholder...");
 
             // 2 blanka rader och sedan vänta på enter-tryck för att visa menyn 
             Console.WriteLine();
@@ -865,12 +861,68 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
         private static void RollspelStats()
         {
             Console.Clear();
+            Console.Write("\nHär skriver du in ett namn på din karaktär och sedan ett namn på en motståndare,");
+            Console.Write("\nSedan slumpas egenskaperna: Hälsa, Styrka & Tur, med ett kast av 1T20 + 1T4 (benämning av tärningstyp) vardera.");
 
-            Rollspel pTutor = new Rollspel();
+            Console.Write("\n\nAnge namnet på din karaktär:");
+            string karakNamn = Console.ReadLine();
 
-            pTutor.SetRollspel("closso", 24, 12, 6);
+            Console.Write("\nAnge namnet på din motståndare:");
+            string motstandNamn = Console.ReadLine();
 
-            Console.WriteLine(pTutor.GetRollspel());
+            static int tarningsKast()
+            {
+            Random rnd = new Random();
+            int t20 = rnd.Next(1, 20);
+            int t4 = rnd.Next(1, 4);
+            int statsSumma = t20 + t4;
+            return statsSumma;
+            }
+
+            int halsa1 = tarningsKast();
+            int styrka1 = tarningsKast();
+            int turen1 = tarningsKast();
+            int halsa2 = tarningsKast();
+            int styrka2 = tarningsKast();
+            int turen2 = tarningsKast();
+            Console.Write("\n");
+
+            //nedan oútput testkod
+            /* Console.Write("Hälsa: " + halsa);
+            Console.Write("\n");
+            Console.Write("Styrka: " + styrka);
+            Console.Write("\n");
+            Console.Write("Tur: " + turen);
+            Console.Write("\n");
+            Console.Write("\n");
+            Console.Write("\n");
+            */
+
+            Rollspel karaktar1 = new Rollspel(karakNamn, halsa1, styrka1, turen1);
+
+            Rollspel karaktar2 = new Rollspel(motstandNamn, halsa2, styrka2, turen2);
+
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Karaktärer & Stats\n");
+            Console.ResetColor();
+
+            if (ValdFarg == true)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+
+            Console.WriteLine("\nDin hjälte: {0}", karaktar1.RollspelNamn);
+            Console.WriteLine("Hälsa \t{0} \nStyrka \t{1} \nTur \t{2}", karaktar1.RollspelHp, karaktar1.RollspelSty, karaktar1.RollspelTur);
+            Console.Write("\n");
+            Console.Write("\n");
+            Console.WriteLine("\nMotståndaren: {0}", karaktar2.RollspelNamn);
+            Console.WriteLine("Hälsa \t{0} \nStyrka \t{1} \nTur \t{2}", karaktar2.RollspelHp, karaktar2.RollspelSty, karaktar2.RollspelTur);
+
 
             // 2 blanka rader och sedan vänta på enter-tryck för att visa menyn 
             Console.WriteLine();
@@ -883,22 +935,20 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
         }
     }
 
-    class Rollspel //testar lite object store and fetch, och lägger ny klass i samma cs. för det är så litet program
+    public class Rollspel //lägger denna klass i samma cs. för det är så litet program
     {
-        string RollspelNamn;
-        int RollspelHp;
-        int RollspelSty;
-        int RollspelTur;
-        public void SetRollspel(string karNamn, int hp, int sty, int tur)
+        public string Name { get; set; }
+        public string RollspelNamn { get; set; }
+        public int RollspelHp { get; set; }
+        public int RollspelSty { get; set; }
+        public int RollspelTur { get; set; }
+        public Rollspel(string karNamn, int hp, int sty, int tur)
         {
             RollspelNamn = karNamn;
             RollspelHp = hp;
             RollspelSty = sty;
             RollspelTur = tur;
         }
-        public string GetRollspel()
-        {
-            return RollspelNamn;
-        }
+
     }
 }
