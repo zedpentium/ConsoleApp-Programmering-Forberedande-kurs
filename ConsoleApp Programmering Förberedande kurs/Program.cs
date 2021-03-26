@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-//using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ConsoleApp_Programmering_Förberedande_kurs
@@ -51,8 +51,8 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             Console.WriteLine("11) Skapa 2 arrayer, första med slumpmässiga tal, den andra med dessa tal o stigande ordning");
             Console.WriteLine("12) Skriv in något, och kollar om det är en palindrom (vändbart ord, så som abba)");
             Console.WriteLine("13) Skriv in 2 tal mellan 1 och 30, och skriver ut alla tal emellan");
-            Console.WriteLine("14) Skriv in ett antal komma-separerade siffror, som sorteras & skrivs ut som udda och jämna värden");
-            //Console.WriteLine("15) Skriv in ett antal komma-separerade siffror, som adderas, summeras & skrivs ut");
+            Console.WriteLine("14) EJ FÄRDIG ! Skriv in ett antal komma-separerade siffror, som sorteras & skrivs ut som udda och jämna värden");
+            Console.WriteLine("15) EJ GJORT ! Skriv in ett antal komma-separerade siffror, som adderas, summeras & skrivs ut");
             Console.WriteLine("16) Ange namn på din karaktär & motståndare. Genererar slumptals-värden för Hälsa, Styrka & Tur.");
             Console.WriteLine("0) Avsluta programmet");
 
@@ -102,9 +102,9 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
                 case "14":
                     KommaUddaJamn();
                     return true;
-            /*    case "15":
+                case "15":
                     KommaPlussa();
-                    return true; */
+                    return true; 
                 case "16":
                     RollspelStats();
                     return true;
@@ -114,7 +114,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
                     return true;
             }
         }
-        private static void HelloCon()
+        private static void HelloCon() // Funktion 1
         {
             Console.Clear();
             Console.WriteLine("Hello World");
@@ -126,7 +126,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             while (Console.ReadKey().Key != ConsoleKey.Enter) {
             }
         }
-        private static void SkrivutInput()
+        private static void SkrivutInput() // Funktion 2
         {
             Console.Clear();
             // Input av sträng, ingen inmatningsvalidering
@@ -171,10 +171,8 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             while (Console.ReadKey().Key != ConsoleKey.Enter) { 
             } 
         }
-        private static void TextFargByte()
+        private static void TextFargByte()// Funktion 3
         {
-            
-
             if (ValdFarg == true)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -196,7 +194,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             while (Console.ReadKey().Key != ConsoleKey.Enter) {
             }
         }
-        private static void SkrivutDd()
+        private static void SkrivutDd() // Funktion 4
         {
             DateTime dagensDatum = DateTime.Today;
 
@@ -213,7 +211,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             {
             }
         }
-        private static void VemStorst()
+        private static void VemStorst() // Funktion 5
         {
 
             int talv1;
@@ -260,7 +258,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             {
             }
         }
-        private static void RandGuessGame()
+        private static void RandGuessGame() // Funktion 6
         {
             Random rdtal = new Random();
 
@@ -324,7 +322,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             }
         }
 
-        private static void TextTillFil()
+        private static void TextTillFil() // Funktion 7
         {
 
             Console.Clear();
@@ -366,7 +364,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             {
             }
         }
-        private static void LasinFil()
+        private static void LasinFil() // Funktion 8
         {
 
             Console.Clear();
@@ -433,7 +431,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             {
             }
         }
-        private static void DecRoten()
+        private static void DecRoten() // Funktion 9
         {
 
             Console.Clear();
@@ -507,7 +505,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
                 }   
             
         }
-        private static void Multi10()
+        private static void Multi10() // Funktion 10
         {
             int v, l, uppTill;
             Console.Clear();
@@ -570,7 +568,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             {
             }
         }
-        private static void TvaArray()
+        private static void TvaArray() // Funktion 11
         {
             Console.Clear();
             int antalTal = 10;
@@ -634,7 +632,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             }
         }
 
-        private static void Palin()
+        private static void Palin() // Funktion 12
         {
             Console.Clear();
             Console.Write("Skriv in ett ord eller siffror och kolla om det är vändbart (palindrom): ");
@@ -678,7 +676,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             }
             
         }
-        private static void NumSpann()
+        private static void NumSpann() // Funktion 13
         {
             Console.Clear();
             int lagaTalet = 7;
@@ -737,7 +735,6 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
 
                     int anvInput2 = Convert.ToInt32(Console.ReadLine());
                     
-
                     if (anvInput2 < 0)
                     {
                         Console.Write("\nDu har skrivit ett negativt tal. Skriv ett positivt heltal från " + lagaTalet + " till " + hogaTalet + ":\n");
@@ -821,21 +818,44 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             {
             }
         }
-        private static void KommaUddaJamn()
+        private static void KommaUddaJamn() // Funktion 14
         {
 
-            //placeholder
+
             Console.Clear();
+            Console.Write("\nOBS!!! EJ helt färdig funktion! Och fick inte till det med input kontrollen, om det är korrekt skrivet. Så just nu VID FEL så skippar den, och avslutar funktionen. /ER\n");
             Console.Write("\nSkriv in några komma-separerade tal. Ex. 3,57,14,29 utan mellanslag:\n");
+            string inputkomSep = Console.ReadLine();
+            //string inputkomSep = "1,3,2,5,4";
 
-            string inputkomSep = "1,3,2,5,4";
-            //string komSep = Console.ReadLine();
-            string ordered = String.Join(",", inputkomSep.Split(',').Select(c => Convert.ToInt32(c)).OrderBy(i => i));
-            int ordered = String.Join(",", inputkomSep.Split(',').Select(c => Convert.ToInt32(c)).OrderBy(i => i));
+            //bool inTesting = false;
 
-            Console.WriteLine("\n" + ordered);
+            /*while (inTesting == false)
+            {*/
+                //try
+                //{
+                    
+                    int[] minintArray = StringToIntArray(inputkomSep);
+                    int mangdTal;
+                    for (mangdTal = 0; mangdTal < minintArray.Length; mangdTal++)
+                    {
+                        Console.Write("{0}  ", minintArray[mangdTal]);
+                        //inTesting = true;
+                    }
 
+                //}
+                //catch
+                //{
+                //Console.Write("\nCatch utlöstes!");
+                //inputkomSep = Console.ReadLine();
+                //inTesting = false;
+                //}
 
+            //}
+
+            //Console.WriteLine(" { 0}" , minintArray);  //.ToString());
+
+            
             // 2 blanka rader och sedan vänta på enter-tryck för att visa menyn 
             Console.WriteLine();
             Console.WriteLine();
@@ -844,11 +864,26 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             {
             }
         }
-        private static void KommaPlussa()
+
+        // method att kalla på för komma-separerad tal i stränginput, till int-array för behandling
+        private static int[] StringToIntArray(string inputkomSep) 
+        {
+            List<int> myIntegers = new List<int>();
+            Array.ForEach(inputkomSep.Split(",".ToCharArray()), s =>
+            {
+                int currentInt;
+            if (Int32.TryParse(s, out currentInt))
+                myIntegers.Add(currentInt);
+            });
+
+            return myIntegers.ToArray();
+        }
+
+        private static void KommaPlussa() // Funktion 15
         {
             //placeholder
             Console.Clear();
-            Console.Write("\nFunktion ej skapad. Detta är en placeholder...");
+            Console.Write("\nFunktion ej gjord. Detta är en placeholder... /ER");
 
             // 2 blanka rader och sedan vänta på enter-tryck för att visa menyn 
             Console.WriteLine();
@@ -858,7 +893,7 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
             {
             }
         }
-        private static void RollspelStats()
+        private static void RollspelStats() // Funktion 16
         {
             Console.Clear();
             Console.Write("\nHär skriver du in ett namn på din karaktär och sedan ett namn på en motståndare,");
@@ -935,7 +970,8 @@ namespace ConsoleApp_Programmering_Förberedande_kurs
         }
     }
 
-    public class Rollspel //lägger denna klass i samma cs. för det är så litet program
+    //Objekt att spara karaktärer och stats i, för att senare hämta ifrån. Lägger denna klass i samma cs. för det är så litet program
+    public class Rollspel 
     {
         public string Name { get; set; }
         public string RollspelNamn { get; set; }
